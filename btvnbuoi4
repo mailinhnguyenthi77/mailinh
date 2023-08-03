@@ -1,0 +1,96 @@
+#include<iostream>
+#include<string.h>
+using namespace std;
+class GiaoVien{
+	private:
+		char HoTen[30] , ChuyenNganh[20] , BangCap[15] ;
+		int Tuoi;
+		float BacLuong, LuongCB;
+	public:
+		GiaoVien(){
+			cout<<"\n ham khoi tao dc goi ! ";
+		}
+		friend istream& operator >> (istream& in , GiaoVien &a){
+			a.LuongCB=a.BacLuong*610;
+			fflush(stdin);
+			cout<<"\n nhap ho va ten : ";
+			in.getline(a.HoTen,30);
+			fflush(stdin);
+			cout<<"\n nhap tuoi : ";
+			cin>>a.Tuoi;
+			fflush(stdin);
+			cout<<"\n nhap bang cap : ";
+			in.getline(a.BangCap,15);
+			cout<<"\n nhap chuyen nganh : ";
+			in.getline(a.ChuyenNganh,20);
+			fflush(stdin);
+			cout<<"\n nhap bac luong : ";
+			cin>>a.BacLuong;
+			cout<<"\n tinh luong co ban :";
+			cin>>a.LuongCB;
+			return in ; 
+		}
+		
+		friend ostream& operator << (ostream& out , GiaoVien &a){
+			cout<<" ho va ten    : "<<a.HoTen<<endl
+			    <<" tuoi         : "<<a.Tuoi<<endl
+			    <<" bang cap     : "<<a.BangCap<<endl
+			    <<" chuyen nganh : "<<a.ChuyenNganh<<endl
+	            <<" bac luong    : "<<a.BacLuong<<endl
+	            <<" luong co ban : "<<a.LuongCB<<endl;
+			    return out;
+		}
+		
+		void SoSanh(GiaoVien a[] , int &n){
+              for(int i=1 ; i<=n ; i++){
+              	if(strcmp(this->a[i].BangCap,a[i].BangCap)==0){
+              		cout<<"\n Hai giao vien do bang nhau ";
+				  }
+			  }
+		}
+		
+		void SapXep(GiaoVien a[] , int &n){
+			for(int i=0 ; i<n ; i++){
+				for(int j=i+1; j<n ; j++){
+					if(strcmp(a[i].BangCap,a[j].BangCap)==1){
+			          	swap(a[i],a[j]);
+		           	}
+				}
+				cin>>a[i];
+			}
+		}
+};
+int main(){
+	int n ;
+	GiaoVien a[n];
+	cout<<"\n moi nhap so giao vien can quan li : ";
+	cin>>n;
+	while(n<=0){
+		cout<<"\n ko hop le ! moi nhap lai : ";
+		cin>>n;
+	}
+	
+	cout<<"\n";
+	cout<<"\nNHAP THONG TIN GIAO VIEN"<<endl;
+	for(int i=1 ; i<=n ; i++){
+		cout<<"\n nhap giao vien thu "<<i<<endl;
+		cin>>a[i];
+	}
+	
+	cout<<"\n";
+	cout<<"\nXUAT THONG TIN GIAO VIEN "<<endl;
+	for(int i=1 ; i<=n ; i++){
+		cout<<"\n xuat thong tin giao vien thu "<<i<<endl;
+		cout<<a[i];
+	}
+	
+	cout<<"\n";
+	cout<<"\nSO SANH HAI GIAO VIEN BANG NHAU "<<endl;
+	SoSanh(a,n);
+	
+	cout<<"\n";
+	cout<<"\nSAP XEP GIAO VIEN THEO BANG CAP "<<endl;
+	SapXep(a,n);
+	
+	return 0 ; 
+}
